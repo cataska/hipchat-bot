@@ -1,0 +1,11 @@
+{
+  "name": "hipchat-bot",
+  "version": "0.1.0",
+  "description": "Bot for Hipchat",
+  "main": "bot.js",
+  "dependencies": {
+    "request": "~2.21.0",
+    "cheerio": "~0.11.0",
+    "wobot": "~0.8.0"
+  }
+}

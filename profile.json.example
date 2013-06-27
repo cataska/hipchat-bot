@@ -1,0 +1,8 @@
+{
+    "jid": "your_jid@chat.hipchat.com",
+    "password": "yourpassword",
+    "name": "your_nickname",
+    "rooms": [
+        "your_roomname"
+    ]
+}
