@@ -2,16 +2,29 @@ var fs = require("fs");
 var request = require("request");
 var cheerio = require("cheerio");
 var wobot = require("wobot");
+var jschardet = require("jschardet");
+var Iconv = require("iconv").Iconv;
 
 function getTitle(uri, callback) {
     request({
-        uri: uri
+        uri: uri,
+        encoding: null
     }, function(err, resp, body) {
            if (err)
                return;
 
-           var $ = cheerio.load(body);
-           callback($("title").text());
+           var detected = jschardet.detect(resp.body);
+           var buf = body;
+           if (detected && detected.encoding &&
+               detected.encoding != 'utf-8' && detected.encoding != 'ascii') {
+               var iconv = new Iconv(detected.encoding, 'utf-8');
+               buf = iconv.convert(body);
+           }
+
+           var $ = cheerio.load(buf);
+           var title = $("title").text();
+
+           callback(title);
        });
 }
 
