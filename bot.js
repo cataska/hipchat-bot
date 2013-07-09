@@ -63,5 +63,5 @@ fs.readFile(filename, function(err, data){
     return;
   }
   profile = JSON.parse(data);
-  connect(profile);
+  return connect(profile);
 });

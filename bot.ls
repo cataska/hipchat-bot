@@ -7,8 +7,7 @@ Iconv = require \iconv .Iconv
 
 getTitle = (uri, callback) ->
   request uri: uri, encoding: null, (err, resp, body) ->
-    if err
-      return
+    return if err
 
     detected = jschardet.detect resp.body
     if detected && detected.encoding && detected.encoding != \utf-8 && detected.encoding != \ascii
@@ -49,10 +48,10 @@ connect = (profile) ->
 
 DEFAULT_PROFILE = 'profile.json';
 filename = __dirname + '/' + DEFAULT_PROFILE;
-fs.readFile filename, !(err, data) ->
-  if err
-    console.log 'Error: ' + err
-    return
+err, data <- fs.readFile filename
+if err
+  console.log 'Error: ' + err
+  return
 
-  profile = JSON.parse data
-  connect profile
+profile = JSON.parse data
+connect profile
