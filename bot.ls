@@ -10,6 +10,7 @@ getTitle = (uri, callback) ->
     return if err
 
     detected = jschardet.detect resp.body
+    buf = body
     if detected && detected.encoding && detected.encoding != \utf-8 && detected.encoding != \ascii
       iconv = new Iconv detected.encoding, \utf-8
       buf = iconv.convert body

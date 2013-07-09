@@ -10,11 +10,12 @@ getTitle = function(uri, callback){
     uri: uri,
     encoding: null
   }, function(err, resp, body){
-    var detected, iconv, buf, $, title;
+    var detected, buf, iconv, $, title;
     if (err) {
       return;
     }
     detected = jschardet.detect(resp.body);
+    buf = body;
     if (detected && detected.encoding && detected.encoding !== 'utf-8' && detected.encoding !== 'ascii') {
       iconv = new Iconv(detected.encoding, 'utf-8');
       buf = iconv.convert(body);
