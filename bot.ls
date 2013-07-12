@@ -47,8 +47,7 @@ connect = (profile) ->
 
   bot.connect!
 
-DEFAULT_PROFILE = \profile.json;
-filename = __dirname + \/ + DEFAULT_PROFILE;
+filename = "#__dirname/profile.json"
 err, data <- fs.readFile filename
 if err
   console.log 'Error: ' + err

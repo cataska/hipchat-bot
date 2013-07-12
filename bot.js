@@ -1,4 +1,4 @@
-var fs, request, cheerio, wobot, jschardet, Iconv, getTitle, connect, DEFAULT_PROFILE, filename;
+var fs, request, cheerio, wobot, jschardet, Iconv, getTitle, connect, filename;
 fs = require('fs');
 request = require('request');
 cheerio = require('cheerio');
@@ -55,8 +55,7 @@ connect = function(profile){
   });
   return bot.connect();
 };
-DEFAULT_PROFILE = 'profile.json';
-filename = __dirname + '/' + DEFAULT_PROFILE;
+filename = __dirname + "/profile.json";
 fs.readFile(filename, function(err, data){
   var profile;
   if (err) {
